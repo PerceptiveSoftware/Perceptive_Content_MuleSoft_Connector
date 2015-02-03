@@ -74,7 +74,7 @@
 
 <p>To use, simply drag the <strong>Perceptive Content</strong> connector onto an existing flow.  The connector requires global configuration for the <strong>Integration Server</strong> url, user and password.  The user and password must be valid <strong>Perceptive Content</strong> users with the permissions appropriate for the type of operations you plan to leverage.  It is advisable to use a service account with manager permissions to avoid issues.</p>
 
-<p><img src="doc/images/config.png" alt="Configuration Sample"></p>
+<p><img src="images/config.png" alt="Configuration Sample"></p>
 
 <p>A complete list of operations can be found in the <a href="doc/javadoc">Java doc</a>. 
 At a high-level, the operations fall into five functionaly areas corresponding to the <strong>Integration Server</strong> operational endpoints.</p>
@@ -129,7 +129,7 @@ At a high-level, the operations fall into five functionaly areas corresponding t
 
 <p>The simple workflow integration sample illustrates a basic flow to integration with <strong>Perceptive Content</strong> workflow.</p>
 
-<p><img src="doc/images/workflow.png" alt="Simple Worklfow Integration Flow"></p>
+<p><img src="images/workflow.png" alt="Simple Worklfow Integration Flow"></p>
 
 <p>The <code>Workflow Trigger Web Service</code> step publishes and services the SOAP web service required by <strong>Envoy</strong>.  A CXF interceptor will inject output properties into the mule message with the parameters sent by workflow.</p>
 
@@ -160,7 +160,7 @@ At a high-level, the operations fall into five functionaly areas corresponding t
 
 <p>The simple portal sample illustrates a possible way to use the view execution functionality.  </p>
 
-<p><img src="doc/images/portal.png" alt="Simple Portal Flow"></p>
+<p><img src="images/portal.png" alt="Simple Portal Flow"></p>
 
 <p>The <code>PortalStaticHostFlow</code> hosts a static web page that uses JavaScript to execute the <code>ViewDataFlow</code>.  The <code>ViewDataFlow</code> returns a JSON structure that is interpretted by the page and displayed in a table format.</p>
 
