@@ -1,0 +1,53 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.perceptivesoftware.com/content/workflow" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="WorkflowTriggerService" targetNamespace="http://www.perceptivesoftware.com/content/workflow">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.perceptivesoftware.com/content/workflow" elementFormDefault="unqualified" targetNamespace="http://www.perceptivesoftware.com/content/workflow" version="1.0">
+            <xs:element name="invokeTrigger" type="tns:invokeTrigger"/>
+            <xs:element name="invokeTriggerResponse" type="tns:invokeTriggerResponse"/>
+            <xs:complexType name="invokeTrigger">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ITEM_ID" type="xs:string"/>
+                    <xs:element minOccurs="0" name="QUEUE_ID" type="xs:string"/>
+                    <xs:element minOccurs="0" name="QUEUE_NAME" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SUCCESS_QUEUE_ID" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SUCCESS_QUEUE_NAME" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FAILURE_QUEUE_ID" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FAILURE_QUEUE_NAME" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="invokeTriggerResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="invokeTriggerResponse">
+        <wsdl:part element="tns:invokeTriggerResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="invokeTrigger">
+        <wsdl:part element="tns:invokeTrigger" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="WorkflowTrigger">
+        <wsdl:operation name="invokeTrigger">
+            <wsdl:input message="tns:invokeTrigger" name="invokeTrigger"/>
+            <wsdl:output message="tns:invokeTriggerResponse" name="invokeTriggerResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WorkflowTriggerServiceSoapBinding" type="tns:WorkflowTrigger">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="invokeTrigger">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="invokeTrigger">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="invokeTriggerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WorkflowTriggerService">
+        <wsdl:port binding="tns:WorkflowTriggerServiceSoapBinding" name="WorkflowTriggerPort">
+            <soap:address location="http://localhost:8081"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

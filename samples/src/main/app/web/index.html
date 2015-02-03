@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perceptive Content View Portal</title>
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script>
+      $.getJSON('/content', function(data) {
+           	  
+        if(data == null) {
+          return;
+        }  
+    	
+        $.each(data.resultRows, function(idx, row) {
+          var name = "";
+          var id = "";
+          var pageCount = 0;
+          var type = "";
+          
+          $.each(row.fields, function(idx, field) {
+            if(field.columnId == "8") {
+              id = field.value;
+            }
+            else if(field.columnId == "58") {
+              name = field.value;
+            }
+            else if(field.columnId == "7") {
+              pageCount = field.value;
+            }
+            else if(field.columnId == "6") {
+            	type = field.value;
+            }            
+          });
+          
+          $('#viewResultsTable > tbody:last').append('<tr>'+
+            '<td>'+id+'</td>'+
+            '<td>'+name+'</td>'+
+            '<td>'+type+'</td>'+
+            '<td>'+pageCount+'</td>'+
+            '</tr>');
+        });
+      });
+    </script>
+  </head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>View: All Documents</h1>
+      <p class="lead">All documents in Perceptive Content</p>
+    </div>
+    <table id="viewResultsTable" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Page Count</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

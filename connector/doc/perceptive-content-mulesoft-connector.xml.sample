@@ -1,0 +1,140 @@
+
+<!-- BEGIN_INCLUDE(perceptive-content:rename-document) -->
+	<perceptive-content-mulesoft:rename-document/>
+<!-- END_INCLUDE(perceptive-content:rename-document) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:set-document-keys) -->
+	<perceptive-content-mulesoft:set-document-keys/>
+<!-- END_INCLUDE(perceptive-content:set-document-keys) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:set-custom-properties) -->
+	<perceptive-content-mulesoft:set-custom-properties/>
+<!-- END_INCLUDE(perceptive-content:set-custom-properties) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:create-document) -->
+	<perceptive-content-mulesoft:create-document/>
+<!-- END_INCLUDE(perceptive-content:create-document) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:add-page-to-document) -->
+	<perceptive-content-mulesoft:add-page-to-document/>
+<!-- END_INCLUDE(perceptive-content:add-page-to-document) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:replace-document-page) -->
+	<perceptive-content-mulesoft:replace-document-page/>
+<!-- END_INCLUDE(perceptive-content:replace-document-page) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-page-by-id) -->
+	<perceptive-content-mulesoft:get-page-by-id/>
+<!-- END_INCLUDE(perceptive-content:get-page-by-id) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:delete-document) -->
+	<perceptive-content-mulesoft:delete-document/>
+<!-- END_INCLUDE(perceptive-content:delete-document) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:delete-page-by-number) -->
+	<perceptive-content-mulesoft:delete-page-by-number/>
+<!-- END_INCLUDE(perceptive-content:delete-page-by-number) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:delete-page-by-id) -->
+	<perceptive-content-mulesoft:delete-page-by-id/>
+<!-- END_INCLUDE(perceptive-content:delete-page-by-id) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:delete-page-by-name) -->
+	<perceptive-content-mulesoft:delete-page-by-name/>
+<!-- END_INCLUDE(perceptive-content:delete-page-by-name) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:create-doc-with-page) -->
+	<perceptive-content-mulesoft:create-document-with-page/>
+<!-- END_INCLUDE(perceptive-content:create-doc-with-page) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-document-type-list) -->
+	<perceptive-content-mulesoft:get-document-type-list/>
+<!-- END_INCLUDE(perceptive-content:get-document-type-list) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-document-type-details) -->
+	<perceptive-content-mulesoft:get-document-type-details/>
+<!-- END_INCLUDE(perceptive-content:get-document-type-details) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-document-type-details-by-id) -->
+	<perceptive-content-mulesoft:get-document-type-details-by-id/>
+<!-- END_INCLUDE(perceptive-content:get-document-type-details-by-id) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-drawer-list) -->
+	<perceptive-content-mulesoft:get-drawer-list/>
+<!-- END_INCLUDE(perceptive-content:get-drawer-list) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-drawer-details-by-name) -->
+	<perceptive-content-mulesoft:get-drawer-details-by-name/>
+<!-- END_INCLUDE(perceptive-content:get-drawer-details-by-name) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-drawer-details-by-id) -->
+	<perceptive-content-mulesoft:get-drawer-details-by-id/>
+<!-- END_INCLUDE(perceptive-content:get-drawer-details-by-id) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-form-list) -->
+	<perceptive-content-mulesoft:get-form-list/>
+<!-- END_INCLUDE(perceptive-content:get-form-list) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-form-data) -->
+	<perceptive-content-mulesoft:get-form-data/>
+<!-- END_INCLUDE(perceptive-content:get-form-data) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-form-data) -->
+	<perceptive-content-mulesoft:get-form-data-by-form-id/>
+<!-- END_INCLUDE(perceptive-content:get-form-data) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:set-form-data) -->
+	<perceptive-content-mulesoft:set-form-data/>
+<!-- END_INCLUDE(perceptive-content:set-form-data) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-data-definition) -->
+	<perceptive-content-mulesoft:get-data-definition/>
+<!-- END_INCLUDE(perceptive-content:get-data-definition) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-property-list) -->
+	<perceptive-content-mulesoft:get-property-list/>
+<!-- END_INCLUDE(perceptive-content:get-property-list) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-view-list) -->
+	<perceptive-content-mulesoft:get-view-list/>
+<!-- END_INCLUDE(perceptive-content:get-view-list) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-view-by-id) -->
+	<perceptive-content-mulesoft:get-view-by-id/>
+<!-- END_INCLUDE(perceptive-content:get-view-by-id) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-view-by-name) -->
+	<perceptive-content-mulesoft:get-view-by-name/>
+<!-- END_INCLUDE(perceptive-content:get-view-by-name) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:run-view-by-name) -->
+	<perceptive-content-mulesoft:run-view-by-name/>
+<!-- END_INCLUDE(perceptive-content:run-view-by-name) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-workflow-item-info) -->
+	<perceptive-content-mulesoft:get-workflow-item-info/>
+<!-- END_INCLUDE(perceptive-content:get-workflow-item-info) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:remove-from-workflow) -->
+	<perceptive-content-mulesoft:remove-from-workflow/>
+<!-- END_INCLUDE(perceptive-content:remove-from-workflow) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:route-workflow-item) -->
+	<perceptive-content-mulesoft:route-workflow-item/>
+<!-- END_INCLUDE(perceptive-content:route-workflow-item) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:add-item-to-workflow) -->
+	<perceptive-content-mulesoft:add-item-to-workflow/>
+<!-- END_INCLUDE(perceptive-content:add-item-to-workflow) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-workflow-queue) -->
+	<perceptive-content-mulesoft:get-workflow-queues/>
+<!-- END_INCLUDE(perceptive-content:get-workflow-queue) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-workflow-queue-forms) -->
+	<perceptive-content-mulesoft:get-workflow-queue-forms/>
+<!-- END_INCLUDE(perceptive-content:get-workflow-queue-forms) -->
+
+<!-- BEGIN_INCLUDE(perceptive-content:get-document) -->
+	<perceptive-content-mulesoft:get-document/>
+<!-- END_INCLUDE(perceptive-content:get-document) -->

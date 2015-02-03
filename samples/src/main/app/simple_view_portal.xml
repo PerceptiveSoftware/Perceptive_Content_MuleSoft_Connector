@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:perceptive-content-mulesoft="http://www.mulesoft.org/schema/mule/perceptive-content-mulesoft" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/perceptive-content-mulesoft http://www.mulesoft.org/schema/mule/perceptive-content-mulesoft/current/mule-perceptive-content-mulesoft.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    <flow name="ViewDataFlow" doc:name="ViewDataFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="content" doc:name="HTTP"/>
+        <perceptive-content-mulesoft:run-view-by-name config-ref="Perceptive_Content" viewName="All Documents" doc:name="Perceptive Content"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+    </flow>
+    <flow name="PortalStaticHostFlow" doc:name="PortalStaticHostFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="portal" doc:name="HTTP"/>
+        <http:static-resource-handler resourceBase="${app.home}/web" doc:name="HTTP Static Resource Handler"/>
+    </flow>
+</mule>

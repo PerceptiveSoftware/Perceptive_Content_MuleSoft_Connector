@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.perceptivesoftware.com/content/workflow" elementFormDefault="unqualified" targetNamespace="http://www.perceptivesoftware.com/content/workflow">
+
+    <element name="invokeTrigger" type="tns:invokeTrigger"/>
+    <element name="invokeTriggerResponse" type="tns:invokeTriggerResponse"/>
+    <complexType name="invokeTrigger">
+        <sequence>
+            <element minOccurs="0" name="ITEM_ID" type="string"/>
+            <element minOccurs="0" name="QUEUE_ID" type="string"/>
+            <element minOccurs="0" name="QUEUE_NAME" type="string"/>
+            <element minOccurs="0" name="SUCCESS_QUEUE_ID" type="string"/>
+            <element minOccurs="0" name="SUCCESS_QUEUE_NAME" type="string"/>
+            <element minOccurs="0" name="FAILURE_QUEUE_ID" type="string"/>
+            <element minOccurs="0" name="FAILURE_QUEUE_NAME" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="invokeTriggerResponse">
+        <sequence>
+            <element name="return" type="boolean"/>
+        </sequence>
+    </complexType>
+
+</schema>
