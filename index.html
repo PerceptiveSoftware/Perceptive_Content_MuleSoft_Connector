@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Perceptive Content MuleSoft Connector : Perceptive Content MuleSoft Connect enables communication with the Perceptive platform through the MuleSoft ESB application.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Perceptive Content MuleSoft Connector</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/PerceptiveSoftware/Perceptive_Content_MuleSoft_Connector">View on GitHub</a>
+
+          <h1 id="project_title">Perceptive Content MuleSoft Connector</h1>
+          <h2 id="project_tagline">Perceptive Content MuleSoft Connect enables communication with the Perceptive platform through the MuleSoft ESB application.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/PerceptiveSoftware/Perceptive_Content_MuleSoft_Connector/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/PerceptiveSoftware/Perceptive_Content_MuleSoft_Connector/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="perceptive-content-mulesoft-connector" class="anchor" href="#perceptive-content-mulesoft-connector" aria-hidden="true"><span class="octicon octicon-link"></span></a>Perceptive Content MuleSoft Connector</h1>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>The <strong>Perceptive Content MuleSoft Connector</strong> provides a collection of functionality to create integrations between <strong>Perceptive Content</strong> and <strong>MuleSoft</strong>.  </p>
+
+<h2>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of Contents</h2>
+
+<ul>
+<li>
+<a href="#features">Features</a>
+
+<ul>
+<li><a href="#integration-server">Integration Server</a></li>
+<li><a href="#workflow-integration">Workflow Integration</a></li>
+</ul>
+</li>
+<li>
+<a href="#samples">Samples</a>
+
+<ul>
+<li><a href="#simple-workflow-integration">Simple Workflow Integration</a></li>
+<li><a href="#simple-portal">Simple Portal</a></li>
+</ul>
+</li>
+<li><a href="#usage-guidelines">Usage Guidelines</a></li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<h3>
+<a id="integration-server" class="anchor" href="#integration-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integration Server</h3>
+
+<p>A RESTful web service used to pull from and push to data Perceptive Content.  </p>
+
+<p>The <strong>Perceptive Content MuleSoft Connector</strong> provides a collection of the most commonly used operations offered by <strong>Integration Server</strong>.  The <code>@Processors</code> supported roughly model the RESTful endpoints.  Consult your <strong>Integration Server</strong> documentation for questions about included operations or to add support for new operations.</p>
+
+<p>To use, simply drag the <strong>Perceptive Content</strong> connector onto an existing flow.  The connector requires global configuration for the <strong>Integration Server</strong> url, user and password.  The user and password must be valid <strong>Perceptive Content</strong> users with the permissions appropriate for the type of operations you plan to leverage.  It is advisable to use a service account with manager permissions to avoid issues.</p>
+
+<p><img src="doc/images/config.png" alt="Configuration Sample"></p>
+
+<p>A complete list of operations can be found in the <a href="doc/javadoc">Java doc</a>. 
+At a high-level, the operations fall into five functionaly areas corresponding to the <strong>Integration Server</strong> operational endpoints.</p>
+
+<ul>
+<li>
+<strong>Document</strong>:  Interacting with document details and pages.</li>
+<li>
+<strong>View</strong>:  Executing views to retrieve lists of objects matching specified search criteria.</li>
+<li>
+<strong>Forms</strong>:  Interacting with <strong>Perceptive Content</strong> eForms.</li>
+<li>
+<strong>WorflowQueue</strong>:  Get details about existing workflow queues.</li>
+<li>
+<strong>WorkflowItem</strong>:  Interacting with workflow items.  Used to add documents or route documents within workflows.</li>
+</ul>
+
+<h3>
+<a id="workflow-integration" class="anchor" href="#workflow-integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Workflow Integration</h3>
+
+<p><strong>Perceptive Content</strong> workflow integration is achieved using Envoy and special workflow queue called an <strong>Integration</strong> queue.  When an object enters an <strong>Integration</strong> queue, the configured <strong>Envoy</strong> service (SOAP) service is triggered.  See your <strong>Perceptive Content</strong> documentation for more information.</p>
+
+<p>Envoy requires a web service operation with the following signature.</p>
+
+<pre><code>&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.perceptivesoftware.com/content/workflow" elementFormDefault="unqualified" targetNamespace="http://www.perceptivesoftware.com/content/workflow" version="1.0"&gt;
+    &lt;xs:element name="invokeTrigger" type="tns:invokeTrigger"/&gt;
+    &lt;xs:element name="invokeTriggerResponse" type="tns:invokeTriggerResponse"/&gt;
+    &lt;xs:complexType name="invokeTrigger"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element minOccurs="0" name="ITEM_ID" type="xs:string"/&gt;
+            &lt;xs:element minOccurs="0" name="QUEUE_ID" type="xs:string"/&gt;
+            &lt;xs:element minOccurs="0" name="QUEUE_NAME" type="xs:string"/&gt;
+            &lt;xs:element minOccurs="0" name="SUCCESS_QUEUE_ID" type="xs:string"/&gt;
+            &lt;xs:element minOccurs="0" name="SUCCESS_QUEUE_NAME" type="xs:string"/&gt;
+            &lt;xs:element minOccurs="0" name="FAILURE_QUEUE_ID" type="xs:string"/&gt;
+            &lt;xs:element minOccurs="0" name="FAILURE_QUEUE_NAME" type="xs:string"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+    &lt;xs:complexType name="invokeTriggerResponse"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name="return" type="xs:boolean"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+</code></pre>
+
+<h2>
+<a id="samples" class="anchor" href="#samples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Samples</h2>
+
+<h3>
+<a id="simple-workflow-integration" class="anchor" href="#simple-workflow-integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simple Workflow Integration</h3>
+
+<p>The simple workflow integration sample illustrates a basic flow to integration with <strong>Perceptive Content</strong> workflow.</p>
+
+<p><img src="doc/images/workflow.png" alt="Simple Worklfow Integration Flow"></p>
+
+<p>The <code>Workflow Trigger Web Service</code> step publishes and services the SOAP web service required by <strong>Envoy</strong>.  A CXF interceptor will inject output properties into the mule message with the parameters sent by workflow.</p>
+
+<ul>
+<li>
+<code>asq.item.id</code> The workflow item ID.<br>
+</li>
+<li>
+<code>asq.queue.id</code> The ID of the <strong>Integration</strong> queue.</li>
+<li>
+<code>asq.queue.name</code> The name of the <strong>Integration</strong> queue.</li>
+<li>
+<code>asq.queue.success.id</code> The ID of the success queue.</li>
+<li>
+<code>asq.queue.success.name</code> The name of the queue.</li>
+<li>
+<code>asq.queue.failure.id</code> The ID of the failure queue.</li>
+<li>
+<code>asq.queue.failure.name</code> The name of the failure queue.</li>
+</ul>
+
+<p>The <code>Get Workflow Item</code> step will convert the Workflow Item ID (<code>asq.item.id</code>) into an object (document) ID.</p>
+
+<p>The <code>Set Success Status</code> and <code>Set Failure Status</code> returns <code>true</code> or <code>false</code> fulfilling the web service contract required by <strong>Envoy</strong>.  </p>
+
+<h3>
+<a id="simple-portal" class="anchor" href="#simple-portal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simple Portal</h3>
+
+<p>The simple portal sample illustrates a possible way to use the view execution functionality.  </p>
+
+<p><img src="doc/images/portal.png" alt="Simple Portal Flow"></p>
+
+<p>The <code>PortalStaticHostFlow</code> hosts a static web page that uses JavaScript to execute the <code>ViewDataFlow</code>.  The <code>ViewDataFlow</code> returns a JSON structure that is interpretted by the page and displayed in a table format.</p>
+
+<h2>
+<a id="usage-guidelines" class="anchor" href="#usage-guidelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage Guidelines</h2>
+
+<p>The content provided in this repository is offered free of charge.  The content can be used as is, modified, or distributed without notifying <strong>Perceptive Software</strong>.  All efforts have been made to ensure quality and accuracy of the content, but is not covered by any warranty or support.  </p>
+
+<p>Please submit <strong>GitHub</strong> pull requests for feature enhancements or bug fixes.  They will be considered and acted upon as time and priority allow.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Perceptive Content MuleSoft Connector maintained by <a href="https://github.com/PerceptiveSoftware">PerceptiveSoftware</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
