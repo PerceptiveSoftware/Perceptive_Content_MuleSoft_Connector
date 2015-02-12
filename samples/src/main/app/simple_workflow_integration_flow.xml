@@ -26,9 +26,11 @@ http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/fil
         <perceptive-content-mulesoft:get-workflow-item-info config-ref="Perceptive_Content" workflowItemId="#[message.outboundProperties.'asq.item.id']" doc:name="Get Workflow Item"/>
         <set-variable variableName="documentId" value="#[payload.objectId]" doc:name="Save Document Id"/>
         <flow-ref name="Save-Document-to-Disk" doc:name="Save to Disk"/>
-        <set-payload value="#[true]" doc:name="Set Success Status"/>
-        <catch-exception-strategy doc:name="Catch Exception Strategy">
-            <set-payload value="#[false]" doc:name="Set Failure Status"/>
+        <flow-ref name="Handle-Success-Flow" doc:name="Handle Success"/>
+
+        <catch-exception-strategy doc:name="Catch Exception Strategy:">
+            <flow-ref name="Handle-Failure-Flow" doc:name="Handle Failure"/>
+
         </catch-exception-strategy>
     </flow>
     <sub-flow name="Save-Document-to-Disk" doc:name="Save-Document-to-Disk">
@@ -44,5 +46,20 @@ http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/fil
                 <logger message="No Pages Found!" level="INFO" doc:name="Logger"/>
             </otherwise>
         </choice>
+    </sub-flow>
+    <sub-flow name="Handle-Success-Flow" doc:name="Handle-Success-Flow">
+        <perceptive-content-mulesoft:route-workflow-item config-ref="Perceptive_Content" destinationQueueId="#[message.outboundProperties.'asq.queue.success.id']" originQueueId="#[message.outboundProperties.'asq.queue.id']" originQueueName="#[message.outboundProperties.'asq.queue.name']" routeReason="MuleSoft Simple Workflow Success!" workflowItemId="#[message.outboundProperties.'asq.item.id']" doc:name="Route to Success Queue"/>
+        <set-payload value="#[true]" doc:name="Set Success Status"/>
+    </sub-flow>
+    <sub-flow name="Handle-Failure-Flow" doc:name="Handle-Failure-Flow">
+        <choice doc:name="Choice">
+            <when expression="#[message.outboundProperties.'asq.item.id' != null]">
+				<perceptive-content-mulesoft:route-workflow-item config-ref="Perceptive_Content" destinationQueueId="#[message.outboundProperties.'asq.queue.failure.id']" originQueueId="#[message.outboundProperties.'asq.queue.id']" originQueueName="#[message.outboundProperties.'asq.queue.name']" routeReason="MuleSoft Simple Workflow Failure!" workflowItemId="#[message.outboundProperties.'asq.item.id']" doc:name="Route to Failure Queue"/>
+            </when>
+            <otherwise>
+                <logger message="!! Failed to route item to failure queue.  Flow execution failed before or during the processing the workflow integration call !!  " level="INFO" doc:name="Logger"/>
+            </otherwise>
+        </choice>
+        <set-payload value="#[false]" doc:name="Set Failure Status"/>
     </sub-flow>
 </mule>
